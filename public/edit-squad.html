@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+    <head></head>
+    <body>
+        <h1 id="match-title"></h1>
+        <h4 id="match-lockIn"></h4>
+        
+        <h2>My Squad <span id="rules" style="color:blue"><small><small>Rules</small></small></span></h2>
+        <div id="rules-panel"></div>
+        <div id="cur-squad"></div>
+        <h2>Other Players</h2>
+        SEARCH: <input id="search-string" placeholder="Will search full name">
+        SORT:
+        <select id="sort-by">
+            <option>NAME</option>
+            <option>PRICE DOWN</option>
+            <option>PRICE UP</option>
+        </select>
+        TEAM:
+        <select id="team-filter">
+            <option>ALL</option>
+        </select>
+        SKILL:
+        <select id="skill-filter">
+            <option>ALL</option>
+            <option>BAT</option>
+            <option>AR</option>
+            <option>KEEP</option>
+            <option>BOWL</option>
+        </select>
+        <div id="other-players"></div>
+        
+
+
+
+
+
+        <script src="js/utils/auth-functions.js"></script>
+        <script src="js/utils/api-functions.js"></script>
+        <script src="js/utils/squad-functions.js"></script>
+        <script src="js/edit-squad.js"></script>
+    </body>
+</html>

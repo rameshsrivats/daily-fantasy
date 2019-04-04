@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html>
+    <head></head>
+    <body>
+        <h1>Register</h1>
+        <form id="register">
+            <input name="email" type="email" placeholder="Email" required>
+            <br>
+            <br>
+            <input name="password" type="password" minlength="8" placeholder="Password (min 8 chars)" required>
+            <br>
+            <br>
+            <button>Submit</button>
+        </form>
+        <p id="register-error"></p>
+        Have an account? <a href="index.html">Login here</a>
+        <script src="js/utils/auth-functions.js"></script>
+        <script src="js/utils/api-functions.js"></script>
+        <script src="js/register.js"></script>
+    </body>
+</html>
