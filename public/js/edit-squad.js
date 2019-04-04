@@ -152,7 +152,6 @@ const initOthers = (roster) => {
 
 // Initialize global squad array from curSquad. 
 // Pick from global others array & delete that item in others
-// Also create orginalSquad and originalOthers so user can reset
 const initSquad = (curSquad) => {
     curSquad.forEach((member) => {
         const ind = others.findIndex((player) => player._id === member.player)
@@ -429,7 +428,7 @@ const renderSaveStrip = (params) => {
         $saveStrip.appendChild($backButton)
         $backButton.addEventListener('click', () => {
                 window.location.assign("upcoming.html")
-        })
+        })      
     } else { // Success message and save button     
         $bottomMessage.style.color = "green"
         $bottomMessage.textContent = '\xa0\xa0\xa0' + 'Your squad looks good' + '\xa0\xa0\xa0'

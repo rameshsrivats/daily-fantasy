@@ -198,8 +198,10 @@ const processFilters = (others, filters) => {
 }
 
 // Check if current squad is same as original squad.
-// This function will only be called when current squad is valid, so can assume 11 players, etc.
 const sameSquad = (curSquad, origSquad) => {
+    if (origSquad.length === 0) {
+        return false
+    }
     curSquad.sort((a, b) => {
         if (a._id < b._id) {
             return -1
