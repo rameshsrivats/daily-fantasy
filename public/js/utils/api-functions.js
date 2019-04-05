@@ -60,7 +60,7 @@ const register = async (email, password) => {
             return {error: data.error}
         } 
     } catch (e) {
-        return {error: 'Unable to connect to server. Please try again later'}
+        return {error: e.message}
     } 
 }
 
