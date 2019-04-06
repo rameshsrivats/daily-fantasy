@@ -9,6 +9,18 @@ const Squad = require('../models/squad')
 
 const router = new express.Router()
 
+// Get all fixtures (admin function)
+router.get('/fixtures', async (req, res) => {
+    try {
+        const allFixtures = await Fixture.find().populate('team1').populate('team2').exec()
+        console.log('length ', allFixtures.length)
+        allFixtures.sort( (a,b) => a.matchNumber - b.matchNumber )
+        res.send(allFixtures)
+    } catch (e) {
+        res.status(500).send(e)
+    }
+})
+
 // Gets upcoming fixtures. Also figures if user has a squad or not
 router.get('/fixtures/upcoming', auth, async (req, res) => {
     const now = Date.now()
