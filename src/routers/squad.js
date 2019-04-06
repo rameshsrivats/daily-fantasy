@@ -29,7 +29,8 @@ router.put('/squads/:id', auth, async (req,res) => {
 
     try {
         // Check lock-in time
-        const lockIn = await Fixture.findById(fixtureId, 'lockIn')
+        const fixture = await Fixture.findById(fixtureId)
+        const lockIn = fixture.lockIn
         const now = Date.now()
         if (now > lockIn) {
             res.status(400).send({ message: 'Your squad could not be saved. The match is already locked.'})
@@ -50,7 +51,7 @@ router.put('/squads/:id', auth, async (req,res) => {
             res.status(201).send({ message: 'Your squad has been saved' })            
         }    
     } catch (e) {
-        res.status(500).send({ message: 'Your squad could not be saved' + e.message })
+        res.status(500).send({ message: 'Your squad could not be saved. ' + e.message })
     }
 })
 
