@@ -1,10 +1,12 @@
-const $fixtureList = document.querySelector('#upcoming-list')
-
 // Validate user by getting token for the page
 const token = getToken()
 if (!token) {
     window.location.replace("login.html")
 }
+
+// Get role from url so that admin link can be displayed
+const urlParams = new URLSearchParams(window.location.search)
+const role = urlParams.get('role')
 
 // Fetch and display the user summary
 getUserSummary().then(({ username, matchPoints, rank}) => {
@@ -18,6 +20,15 @@ getUserSummary().then(({ username, matchPoints, rank}) => {
     $performance.textContent = `Rank: ${rank}. Match Points: ${matchPoints}.   `
     $userSummary.appendChild($performance)  
 })
+
+// Append admin link if user is admin
+if (role === 'admin') {
+    const $menu = document.querySelector('#menu')
+    const $adminLink = document.createElement('a')
+    $adminLink.textContent = 'Admin'
+    $adminLink.setAttribute('href', 'admin.html')
+    $menu.appendChild($adminLink)    
+}
 
 // Handle user actions
 document.querySelector('#actions').addEventListener('change', (e) => {
@@ -42,6 +53,7 @@ document.querySelector('#actions').addEventListener('change', (e) => {
 })
 
 // Fetch and display the upcoming fixtures
+const $fixtureList = document.querySelector('#upcoming-list')
 const renderFixture = ({ _id, team1: { longName: name1, name: t1 } , team2: {longName: name2, name: t2}, lockIn, hasSquad }) => {
     const $fixture = document.createElement('div')
     $fixture.style.marginBottom = "50px"

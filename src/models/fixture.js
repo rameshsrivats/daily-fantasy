@@ -59,6 +59,12 @@ fixtureSchema.statics.getUpcoming = async (time) => {
     return upcoming
 }
 
+fixtureSchema.statics.getLastLocked = async (time) => {
+    const lockedFixtures = await Fixture.find({lockIn: {$lt: time}}).select('-scores').populate('team1').populate('team2').exec()
+    const lastLocked = lockedFixtures.sort((a, b) => b.lockIn - a.lockIn)[0]
+    return lastLocked
+}
+
 fixtureSchema
  
 

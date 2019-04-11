@@ -9,6 +9,7 @@ const Squad = require('../models/squad')
 
 const router = new express.Router()
 
+// Get user's saved squad for a particular fixture
 router.get('/squads/:id/me', auth, async (req, res) => {
     const fixtureId = req.params.id
     try {
@@ -19,6 +20,17 @@ router.get('/squads/:id/me', auth, async (req, res) => {
             res.send({empty: 'No squad created yet'})
         }
         
+    } catch (e) {
+        res.status(400).send({error: e.message})
+    }
+})
+
+// Get all squads given fixture id
+router.get('/squads/:id/fixtures', auth, async (req, res) => {
+    const fixtureId = req.params.id
+    try {
+        const allSquads = await Squad.find({fixture: fixtureId}).populate('user').populate('squad.player').exec()
+        res.send(allSquads)
     } catch (e) {
         res.status(400).send({error: e.message})
     }

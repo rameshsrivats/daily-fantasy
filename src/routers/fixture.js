@@ -55,8 +55,18 @@ router.get('/fixture/:id/users', auth, async (req, res) => {
         res.send(fixture.squads)
     } catch (e) {
         res.status(400).send(e.message)
+    }  
+})
+
+// Get last locked match
+router.get('/fixtures/lastLocked', auth, async (req, res) => {
+    const now = Date.now()
+    try {
+        const lastLocked = await Fixture.getLastLocked(now)
+        res.send(lastLocked)
+    } catch (e) {
+        res.status(400).send({error: e.message})
     }
-    
 })
 
 module.exports = router
