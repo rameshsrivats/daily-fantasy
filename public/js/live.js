@@ -38,6 +38,9 @@ const showUserSquad = (squad, teamData) => {
 
 const renderAllSquads = (squads, teamData) => {
     const $userList = document.querySelector('#live-squads')
+    if (squads.length === 0) {
+        return $userList.textContent = 'No squads created'
+    }
     squads.forEach((user, index) => {
         const $userLink = document.createElement('p')
         $userLink.textContent = `${index + 1}. ${user.user.username}`

@@ -281,7 +281,6 @@ const getLastLocked = async () => {
 
 // Fetch all saved squads for a fixture
 const fetchAllSquads = async (id) => {
-    id = '5ca2f0a726281a12e7f35581' // Just for testing
     const token = getToken()
     const url = '/squads/' + id + '/fixtures'
     const myHeaders = createHeaders(token)
